@@ -1,0 +1,89 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#view-scores {
+    background-color: #ffffff;
+    color: #5c189b;
+    margin-top: 0;
+    padding: 0;
+}
+
+#view-scores:hover {
+    text-decoration: underline;
+}
+
+/* temporary ---------- */
+#temp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-section {
+    background-color: aquamarine;
+}
+
+#quiz-section {
+    background-color: maroon;
+    display: none;
+}
+
+#answers {
+    display: flex;
+    flex-direction: column;
+}
+
+#end-section {
+    background-color: darkgoldenrod;
+    display: none;
+}
+
+#highscore-section {
+    background-color: springgreen;
+    display: none;
+}
+
+/* ------------------- */
+
+main {
+    flex: 0 0 50%; /* temporary */
+    padding: 3%;
+    text-align: center;
+}
+
+main h1, main h2 {
+    padding-bottom: 2%;
+}
+
+main h1 {
+    font-size: 250%;
+}
+
+main h2 {
+    font-size: 200%;
+}
+
+main p, main label {
+    font-size: 125%;
+}
+
+button {
+    background-color: #5c189b;
+    color: #ffffff;
+    margin-top: 2%;
+    padding: 1%;
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+    background-color: #815ca5;
+}

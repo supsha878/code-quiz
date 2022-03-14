@@ -10,36 +10,41 @@
     </head>
 
     <body>
-        <nav>
+        <nav id="scores-timer">
             <ul>
-                <li>View Highscores</li>
+                <li><button id="view-scores">View Highscores</button></li>
                 <li>Time: 0</li>
             </ul>
         </nav>
-        <main id="start-section"></main>
+        <div id="temp">
+        <main id="start-section">
             <h1>Coding Quiz Challenge</h1>
-            <p>Try to answer these questions quickly and correctly! Your score is determined by how quicly you complete the quiz</p>
+            <p>Try to answer these questions quickly and correctly! Your score is determined by how quickly you complete the quiz.</p>
             <button id="start">Start Quiz</button>
+        </main>
         <main id="quiz-section">
             <h2 id="question"></h2>
-            <button id="choice-1"></button>
-            <button id="choice-2"></button>
-            <button id="choice-3"></button>
-            <button id="choice-4"></button>
+            <div id="answers">
+                <button id="choice-1"></button>
+                <button id="choice-2"></button>
+                <button id="choice-3"></button>
+                <button id="choice-4"></button>
+            </div>
         </main>
         <main id="end-section">
             <h2>All Done!</h2>
             <p>Your final score is: </p>
             <label>Enter initials: </label>
-            <input type="text" id="initials" maxlength="5">
+            <input type="text" id="initials" maxlength="5" placeholder="&quot;AA&quot;">
             <button id="submit">Submit</button>
         </main>
         <main id="highscore-section">
             <h1>Highscores</h1>
-            <ul id="highscores"></ul>
+            <ol id="highscores"></ol>
             <button id="back">Go Back</button>
             <button id="clear">Clear Highscores</button>
         </main>
+        </div>
 
         <script src="./develop/script.js"></script>
     </body>
