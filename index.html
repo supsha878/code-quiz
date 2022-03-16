@@ -13,7 +13,7 @@
         <nav id="scores-timer">
             <ul>
                 <li><button id="view-scores">View Highscores</button></li>
-                <li>Time: 0</li>
+                <li id="timer">Time: 0</li>
             </ul>
         </nav>
         <div id="temp">
@@ -25,15 +25,16 @@
         <main id="quiz-section">
             <h2 id="question"></h2>
             <div id="answers">
-                <button id="choice-1"></button>
-                <button id="choice-2"></button>
-                <button id="choice-3"></button>
-                <button id="choice-4"></button>
+                <button id="choice-1" number="1"></button>
+                <button id="choice-2" number="2"></button>
+                <button id="choice-3" number="3"></button>
+                <button id="choice-4" number="4"></button>
             </div>
+            <!-- add correct/incorrect pop-up, stays for a second -->
         </main>
         <main id="end-section">
             <h2>All Done!</h2>
-            <p>Your final score is: </p>
+            <p id="score">Your final score is: </p>
             <label>Enter initials: </label>
             <input type="text" id="initials" maxlength="5" placeholder="&quot;AA&quot;">
             <button id="submit">Submit</button>
@@ -46,7 +47,7 @@
         </main>
         </div>
 
-        <script src="./develop/script.js"></script>
+        <script src="./develop/js/script.js"></script>
     </body>
 
 </html>
