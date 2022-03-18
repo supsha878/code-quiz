@@ -10,17 +10,21 @@ var choice4El = document.getElementById("choice-4");
 
 var scoreEl = document.getElementById("score");
 
+var highscoreListEl = document.getElementById("highscores");
+
 // store form elements in variables
 var startButton = document.getElementById("start");
 var initialsInput = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
+var clearButton = document.getElementById("clear");
 
 // event listeners
 startButton.addEventListener("click", startQuiz);
 answersEl.addEventListener("click", recordAnswer);
 submitButton.addEventListener("click", submitInitials);
+clearButton.addEventListener("click", clearScores);
 
-// create questions, answers, other global variables
+// create questions & answers
 var question1 = {
     question: "question 1",
     choice1: "answer1",
@@ -47,11 +51,16 @@ var question3 = {
 
 var questionSet = [question1, question2, question3];
 var answerKey = [1, 1, 1];
-var userAnswer = [];
+
+// initialize variables
+var userAnswer;
 var currQuestion;
 var timerCount;
 var isDone;
 var finalScore;
+
+
+// TODO local storage
 var highscoreList = [];
 
 // functions
@@ -60,6 +69,7 @@ function resetQuiz() { //!! somethings weird with this
     currQuestion = 0;
     timerCount = 20;
     isDone = false;
+    userAnswer = [];
 }
 
 function startQuiz() {
@@ -118,22 +128,36 @@ function endQuiz() {
 }
 
 function submitInitials(event) {
-    event.preventDefault(); //!! not clearing input
+    event.preventDefault(); // !!not clearing input
     var newScore = {
         initials: initialsInput.value,
         score: finalScore
     };
     highscoreList.push(newScore);
     appendScores();
-    // sort highscores, append.
     // TODO window switch
 }
 
+function clearScores() {
+    while (highscoreListEl.firstChild) {
+        highscoreListEl.removeChild(highscoreListEl.firstChild);
+    }
+}
+
 function appendScores() {
-    console.log(highscoreList);
-    // highscoreList.sort((a, b) => {
-    //     return b.score - a.score;
-    // });
+    // sort highscores by score
+    highscoreList.sort((a, b) => {
+        return b.score - a.score;
+    });
+
+    clearScores();    
+
+    // reappends highscores to highscore list element
+    for (i = 0; i < highscoreList.length; i++) {
+        var highscore = document.createElement("li");
+        highscore.textContent = highscoreList[i].initials + " - " + highscoreList[i].score;
+        highscoreListEl.appendChild(highscore);
+    }
 }
 
 // function addHighscore() {

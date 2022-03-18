@@ -87,3 +87,7 @@ button {
 button:hover {
     background-color: #815ca5;
 }
+
+input {
+    padding: .5%;
+}
