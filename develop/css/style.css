@@ -13,27 +13,26 @@ ul {
     color: #5c189b;
     margin-top: 0;
     padding: 0;
+    box-shadow: none;
 }
 
 #view-scores:hover {
     text-decoration: underline;
 }
 
-/* temporary ---------- */
-#temp {
+#main-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-#start-section {
-    background-color: aquamarine;
-}
+/* #start-section {
+} */
 
 #quiz-section {
-    background-color: maroon;
-    /* display: none; */
+    display: none;
+    text-align: start;
 }
 
 #answers {
@@ -41,20 +40,21 @@ ul {
     flex-direction: column;
 }
 
+#answers button {
+    flex: 0 0 auto;
+}
+
 #end-section {
-    background-color: darkgoldenrod;
-    /* display: none; */
+    display: none;
+    text-align: start;
 }
 
 #highscore-section {
-    background-color: springgreen;
-    /* display: none; */
+    display: none;
 }
 
-/* ------------------- */
-
 main {
-    flex: 0 0 50%; /* temporary */
+    flex: 0 0 50%;
     padding: 3%;
     text-align: center;
 }
@@ -88,6 +88,16 @@ button:hover {
     background-color: #815ca5;
 }
 
+button:active {
+    box-shadow: 0 0 5px 2px lightskyblue;
+}
+
 input {
     padding: .5%;
+}
+
+ol li {
+    font-size: 125%;
+    padding: .5%;
+    background-color: #c8bad6;
 }

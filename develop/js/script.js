@@ -1,4 +1,10 @@
 // store content in variables
+var navEl = document.getElementById("scores-timer");
+var startSecEl = document.getElementById("start-section");
+var quizSecEl = document.getElementById("quiz-section");
+var endSecEl = document.getElementById("end-section");
+var scoreSecEl = document.getElementById("highscore-section");
+
 var timerEl = document.getElementById("timer");
 
 var questionEl = document.getElementById("question");
@@ -13,15 +19,19 @@ var scoreEl = document.getElementById("score");
 var highscoreListEl = document.getElementById("highscores");
 
 // store form elements in variables
+var viewScoresButton = document.getElementById("view-scores");
 var startButton = document.getElementById("start");
 var initialsInput = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
+var backButton = document.getElementById("back");
 var clearButton = document.getElementById("clear");
 
 // event listeners
+viewScoresButton.addEventListener("click", viewScores);
 startButton.addEventListener("click", startQuiz);
 answersEl.addEventListener("click", recordAnswer);
 submitButton.addEventListener("click", submitInitials);
+backButton.addEventListener("click", goBack);
 clearButton.addEventListener("click", clearScores);
 
 // create questions & answers
@@ -57,6 +67,7 @@ var userAnswer;
 var currQuestion;
 var timerCount;
 var isDone;
+var scoresUp = false;
 var finalScore;
 
 
@@ -64,8 +75,19 @@ var finalScore;
 var highscoreList = [];
 
 // functions
-function resetQuiz() { //!! somethings weird with this
-    // TODO reset from prev quiz: currQues, timerCount, isDone
+
+function viewScores() {
+    startSecEl.style.display = "none";
+    quizSecEl.style.display = "none";
+    endSecEl.style.display = "none";
+    scoreSecEl.style.display = "unset";
+    navEl.style.visibility = "hidden";
+    // ends game and keeps end page from appearing
+    isDone = true;
+    scoresUp = true;
+}
+
+function resetQuiz() {
     currQuestion = 0;
     timerCount = 20;
     isDone = false;
@@ -74,8 +96,9 @@ function resetQuiz() { //!! somethings weird with this
 
 function startQuiz() {
     resetQuiz();
-    // TODO window switch
     timerEl.textContent = "Time: " + timerCount;
+    startSecEl.style.display = "none";
+    quizSecEl.style.display = "unset";
     setTime();
     nextQuestion();
 }
@@ -83,7 +106,7 @@ function startQuiz() {
 function setTime() {
     var timerInterval = setInterval(function() {
         timerCount--;
-        timerEl.textContent = "Time: " + timerCount; // !!timer delay
+        timerEl.textContent = "Time: " + timerCount;
         if(isDone || timerCount === 0) {
             clearInterval(timerInterval);
             timerEl.textContent = "Time: 0";
@@ -110,9 +133,13 @@ function recordAnswer(event) {
     if (userTarget.matches("button")) {
         userAnswer.push(userTarget.getAttribute("number"));
         if (answerKey[currQuestion - 1] != userAnswer[currQuestion - 1]) {
-            timerCount-= 5; // !! score can appear as negative
+            if (timerCount - 5 > 0) {
+                timerCount-= 5;
+            } else {
+                timerCount = 0;
+            }
             // TODO correct/incorrect popups
-            console.log("incorrect"); // !!bug
+            console.log("incorrect");
         } else {
             console.log("correct");
         }
@@ -121,10 +148,16 @@ function recordAnswer(event) {
 }
 
 function endQuiz() {
-// TODO window switch
-    finalScore = timerCount;
+    if (timerCount < 0) {
+        finalScore = 0;
+    } else {
+        finalScore = timerCount;
+    }
     scoreEl.textContent = finalScore;
-    console.log("fewinee");
+    if (!scoresUp) {
+        quizSecEl.style.display = "none";
+        endSecEl.style.display = "unset";
+    }
 }
 
 function submitInitials(event) {
@@ -135,10 +168,18 @@ function submitInitials(event) {
     };
     highscoreList.push(newScore);
     appendScores();
-    // TODO window switch
+    endSecEl.style.display = "none";
+    scoreSecEl.style.display = "unset";
+    navEl.style.visibility = "hidden";
 }
 
-function clearScores() {
+// if event is passed, it will completely erase the stored scores
+// if event is not passed, it only clear the highscore list element
+function clearScores(event) {
+    if (event) {
+        //delete everything -- local storage TODO
+        highscoreList = [];
+    }
     while (highscoreListEl.firstChild) {
         highscoreListEl.removeChild(highscoreListEl.firstChild);
     }
@@ -152,12 +193,19 @@ function appendScores() {
 
     clearScores();    
 
-    // reappends highscores to highscore list element
+    // re-appends highscores to highscore list element
     for (i = 0; i < highscoreList.length; i++) {
         var highscore = document.createElement("li");
         highscore.textContent = highscoreList[i].initials + " - " + highscoreList[i].score;
         highscoreListEl.appendChild(highscore);
     }
+}
+
+function goBack () {
+    scoreSecEl.style.display = "none";
+    startSecEl.style.display = "unset";
+    navEl.style.visibility = "unset";
+    scoresUp = false;
 }
 
 // function addHighscore() {
