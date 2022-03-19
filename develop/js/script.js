@@ -227,6 +227,7 @@ function clearScores(event) {
         highscoreList = [];
         localStorage.setItem("highscores", JSON.stringify(highscoreList));
     }
+    // 2022, https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
     while (highscoreListEl.firstChild) {
         highscoreListEl.removeChild(highscoreListEl.firstChild);
     }
@@ -235,6 +236,7 @@ function clearScores(event) {
 // sorts scores and appends to highscore window
 function appendScores() {
     // sort highscores by score
+    // 2021, https://www.delftstack.com/howto/javascript/sort-array-based-on-some-property-javascript/
     highscoreList.sort((a, b) => {
         return b.score - a.score;
     });
