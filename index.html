@@ -17,36 +17,36 @@
             </ul>
         </nav>
         <div id="main-wrapper">
-        <main id="start-section">
-            <h1>Coding Quiz Challenge</h1>
-            <p>Try to answer these questions quickly and correctly! Your final score is determined by how quickly you answer these questions. Every time you answer a question incorrectly, you lose 5 seconds. Good luck!</p>
-            <button id="start">Start Quiz</button>
-        </main>
-        <main id="quiz-section">
-            <h2 id="question"></h2>
-            <div id="answers">
-                <button id="choice-1" number="1"></button>
-                <button id="choice-2" number="2"></button>
-                <button id="choice-3" number="3"></button>
-                <button id="choice-4" number="4"></button>
-            </div>
-            <!-- add correct/incorrect pop-up, stays for a second -->
-        </main>
-        <main id="end-section">
-            <h2>All Done!</h2>
-            <p>Your final score is: <span id="score"></span></p>
-            <form>
-                <label>Enter initials: </label>
-                <input type="text" id="initials" maxlength="5" placeholder="&quot;AA&quot;">
-                <button id="submit">Submit</button>
-            </form>
-        </main>
-        <main id="highscore-section">
-            <h1>Highscores</h1>
-            <ol id="highscores"></ol>
-            <button id="back">Go Back</button>
-            <button id="clear">Clear Highscores</button>
-        </main>
+            <main id="start-section">
+                <h1>Coding Quiz Challenge</h1>
+                <p>Try to answer these questions quickly and correctly! Your final score is determined by how quickly you answer these questions. Every time you answer a question incorrectly, you lose 5 seconds. Good luck!</p>
+                <button id="start">Start Quiz</button>
+            </main>
+            <main id="quiz-section">
+                <h2 id="question"></h2>
+                <div id="answers">
+                    <button id="choice-1" number="1"></button>
+                    <button id="choice-2" number="2"></button>
+                    <button id="choice-3" number="3"></button>
+                    <button id="choice-4" number="4"></button>
+                    <p id="correct-incorrect"></p>
+                </div>
+            </main>
+            <main id="end-section">
+                <h2>All Done!</h2>
+                <p>Your final score is: <span id="score"></span></p>
+                <form>
+                    <label>Enter initials: </label>
+                    <input type="text" id="initials" maxlength="5" placeholder="&quot;AA&quot;">
+                    <button id="submit">Submit</button>
+                </form>
+            </main>
+            <main id="highscore-section">
+                <h1>Highscores</h1>
+                <ol id="highscores"></ol>
+                <button id="back">Go Back</button>
+                <button id="clear">Clear Highscores</button>
+            </main>
         </div>
 
         <script src="./develop/js/script.js"></script>

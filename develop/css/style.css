@@ -40,10 +40,6 @@ ul {
     flex-direction: column;
 }
 
-#answers button {
-    flex: 0 0 auto;
-}
-
 #end-section {
     display: none;
     text-align: start;
@@ -75,6 +71,15 @@ main p, main label {
     font-size: 125%;
 }
 
+#correct-incorrect {
+    margin: 1.5%;
+    padding: 2%;
+    color: #888888;
+    border-top: solid 1px #888888;
+    visibility: hidden;
+    font-style: italic;
+}
+
 button {
     background-color: #5c189b;
     color: #ffffff;
@@ -99,5 +104,6 @@ input {
 ol li {
     font-size: 125%;
     padding: .5%;
-    background-color: #c8bad6;
+    background-color: #d3c8df;
+    border-radius: 5px;
 }
