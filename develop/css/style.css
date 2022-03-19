@@ -2,6 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* navigation bar */
 ul {
     padding: 1%;
     display: flex;
@@ -20,6 +21,7 @@ ul {
     text-decoration: underline;
 }
 
+/* main elements */
 #main-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -27,9 +29,7 @@ ul {
     align-items: center;
 }
 
-/* #start-section {
-} */
-
+/* quiz window */
 #quiz-section {
     display: none;
     text-align: start;
@@ -40,15 +40,18 @@ ul {
     flex-direction: column;
 }
 
+/* end window */
 #end-section {
     display: none;
     text-align: start;
 }
 
+/* highscore window */
 #highscore-section {
     display: none;
 }
 
+/* basic window styling */
 main {
     flex: 0 0 50%;
     padding: 3%;
@@ -71,15 +74,7 @@ main p, main label {
     font-size: 125%;
 }
 
-#correct-incorrect {
-    margin: 1.5%;
-    padding: 2%;
-    color: #888888;
-    border-top: solid 1px #888888;
-    visibility: hidden;
-    font-style: italic;
-}
-
+/* form elements & responsivenss */
 button {
     background-color: #5c189b;
     color: #ffffff;
@@ -106,4 +101,14 @@ ol li {
     padding: .5%;
     background-color: #d3c8df;
     border-radius: 5px;
+}
+
+/* answer feedback styling */
+#correct-incorrect {
+    margin: 1.5%;
+    padding: 2%;
+    color: #888888;
+    border-top: solid 1px #888888;
+    visibility: hidden;
+    font-style: italic;
 }

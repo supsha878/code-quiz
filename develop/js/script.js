@@ -1,12 +1,15 @@
 // store content in variables
+// windows and navigation bar
 var navEl = document.getElementById("scores-timer");
 var startSecEl = document.getElementById("start-section");
 var quizSecEl = document.getElementById("quiz-section");
 var endSecEl = document.getElementById("end-section");
 var scoreSecEl = document.getElementById("highscore-section");
 
+// nav elements
 var timerEl = document.getElementById("timer");
 
+// quiz window
 var questionEl = document.getElementById("question");
 var answersEl = document.getElementById("answers");
 var choice1El = document.getElementById("choice-1");
@@ -15,8 +18,10 @@ var choice3El = document.getElementById("choice-3");
 var choice4El = document.getElementById("choice-4");
 var corrIncorrEl = document.getElementById("correct-incorrect");
 
+// end window
 var scoreEl = document.getElementById("score");
 
+// highscore window
 var highscoreListEl = document.getElementById("highscores");
 
 // store form elements in variables
@@ -36,34 +41,51 @@ backButton.addEventListener("click", goBack);
 clearButton.addEventListener("click", clearScores);
 
 // create questions & answers
+
 var question1 = {
-    question: "question 1",
-    choice1: "answer1",
-    choice2: "answer2",
-    choice3: "answer3",
-    choice4: "answer4",
-}
+    question: "Which of these is NOT an operator?",
+    choice1: "%",
+    choice2: "typeof",
+    choice3: "{}",
+    choice4: "!=="
+};
 
 var question2 = {
-    question: "question 2",
-    choice1: "answer1 agin",
-    choice2: "answer2 again",
-    choice3: "answer3 agian",
-    choice4: "answer4 agian",
-}
+    question: ".sort is a(n) ______ of Array.",
+    choice1: "object",
+    choice2: "property",
+    choice3: "variable",
+    choice4: "method"
+};
 
 var question3 = {
-    question: "question 3",
-    choice1: "answer1once",
-    choice2: "answermore2",
-    choice3: "answerandante!3",
-    choice4: "answer4",
-}
+    question: "numArray is an array that stores 3 values. How would you access the second value?",
+    choice1: "numArray.1",
+    choice2: "numArray[1]",
+    choice3: "numArray[\"2\"]",
+    choice4: "numArray[2]"
+};
 
-var questionSet = [question1, question2, question3];
-var answerKey = [1, 1, 1];
+var question4 = {
+    question: "Window is a type of ______ in JavaScript.",
+    choice1: "function",
+    choice2: "array",
+    choice3: "boolean",
+    choice4: "object"
+};
 
-// initialize variables
+var question5 = {
+    question: "What are the three components of a for loop?",
+    choice1: "initializer, condition, iterator",
+    choice2: "iterator initializer, condition",
+    choice3: "declaration, condition, initializer",
+    choice4: "initializer, declaration, iterator"
+};
+
+var questionSet = [question1, question2, question3, question4, question5];
+var answerKey = [3, 4, 2, 4, 1];
+
+// declare variables
 var userAnswer;
 var currQuestion;
 var timerCount;
@@ -76,6 +98,7 @@ var highscoreList;
 getScores();
 
 // functions
+// gets highscore array from local storage and appends to page
 function getScores() {
     highscoreList = JSON.parse(localStorage.getItem("highscores"));
     if (!highscoreList) {
@@ -84,24 +107,27 @@ function getScores() {
     appendScores();
 }
 
+// view highscore page, ends quiz if quiz was started
 function viewScores() {
     startSecEl.style.display = "none";
     quizSecEl.style.display = "none";
     endSecEl.style.display = "none";
     scoreSecEl.style.display = "unset";
     navEl.style.visibility = "hidden";
-    // ends game and keeps end page from appearing
+    // ends quiz and keeps end window from appearing
     isDone = true;
     scoresUp = true;
 }
 
+// resets variables to begin quiz at beginning
 function resetQuiz() {
     currQuestion = 0;
-    timerCount = 20;
+    timerCount = 75;
     isDone = false;
     userAnswer = [];
 }
 
+// starts quiz by resetting, starting timer, and appending first question
 function startQuiz() {
     resetQuiz();
     timerEl.textContent = "Time: " + timerCount;
@@ -111,6 +137,7 @@ function startQuiz() {
     nextQuestion();
 }
 
+// starts timer, appends to page, ends game if timer reaches 0 or if user answers all questions
 function setTime() {
     var timerInterval = setInterval(function() {
         timerCount--;
@@ -124,6 +151,7 @@ function setTime() {
     }, 1000);
 }
 
+// sets next question on page, ends game if there are no more questions
 function nextQuestion() {
     if (questionSet[currQuestion] === undefined) {
         isDone = true;
@@ -137,6 +165,7 @@ function nextQuestion() {
     }
 }
 
+// checks answer and appends next question
 function recordAnswer(event) {
     var userTarget = event.target;
     if (userTarget.matches("button")) {
@@ -146,11 +175,12 @@ function recordAnswer(event) {
     }
 }
 
+// checks answer, displays feedback, and deducts time if answer is incorrect
 function checkAnswer() {
     if (answerKey[currQuestion - 1] != userAnswer[currQuestion - 1]) {
         corrIncorrEl.textContent = "Incorrect!";
-        if (timerCount - 5 > 0) {
-            timerCount-= 5;
+        if (timerCount - 10 > 0) {
+            timerCount-= 10;
         } else {
             timerCount = 0;
         }
@@ -160,6 +190,7 @@ function checkAnswer() {
     corrIncorrEl.style.visibility = "unset";
 }
 
+// appends final score, switches to end window
 function endQuiz() {
     if (timerCount < 0) {
         finalScore = 0;
@@ -173,6 +204,7 @@ function endQuiz() {
     }
 }
 
+// takes user initials and score and stores in array in local storage, appends scores, switches to highscore window
 function submitInitials(event) {
     event.preventDefault();
     var newScore = {
@@ -200,6 +232,7 @@ function clearScores(event) {
     }
 }
 
+// sorts scores and appends to highscore window
 function appendScores() {
     // sort highscores by score
     highscoreList.sort((a, b) => {
@@ -216,6 +249,7 @@ function appendScores() {
     }
 }
 
+// switches to start window
 function goBack () {
     scoreSecEl.style.display = "none";
     startSecEl.style.display = "unset";
